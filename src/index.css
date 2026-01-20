@@ -1,0 +1,55 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --founded-black: #0a0a0a;
+  --founded-white: #ffffff;
+  --founded-lime: #c8ff00;
+  --founded-lime-dark: #a8d900;
+  --founded-gray: #1a1a1a;
+  --founded-gray-light: #2a2a2a;
+  --founded-text-muted: #888888;
+}
+
+body {
+  font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--founded-black);
+  color: var(--founded-white);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--founded-gray);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--founded-lime);
+  border-radius: 3px;
+}
+
+/* Selection */
+::selection {
+  background: var(--founded-lime);
+  color: var(--founded-black);
+}

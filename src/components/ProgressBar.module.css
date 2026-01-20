@@ -1,0 +1,28 @@
+.container {
+  width: 100%;
+  max-width: 300px;
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.barBackground {
+  width: 100%;
+  height: 4px;
+  background: var(--founded-gray-light);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.barFill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--founded-lime) 0%, var(--founded-lime-dark) 100%);
+  border-radius: 2px;
+}
+
+.label {
+  font-size: 0.75rem;
+  color: var(--founded-text-muted);
+}

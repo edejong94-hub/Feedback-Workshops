@@ -1,0 +1,144 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.question {
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 40px;
+  color: var(--founded-white);
+  line-height: 1.4;
+}
+
+.choices {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+@media (max-width: 500px) {
+  .choices {
+    flex-direction: column;
+  }
+}
+
+.choiceButton {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 32px 24px;
+  background: var(--founded-gray);
+  border: 2px solid var(--founded-gray-light);
+  border-radius: 16px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.2s ease;
+}
+
+.choiceButton:hover {
+  border-color: var(--founded-lime);
+  background: var(--founded-gray-light);
+}
+
+.choiceButton.selected {
+  background: rgba(200, 255, 0, 0.1);
+  border-color: var(--founded-lime);
+  box-shadow: 0 0 30px rgba(200, 255, 0, 0.2);
+}
+
+.choiceEmoji {
+  font-size: 48px;
+}
+
+.choiceText {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--founded-white);
+}
+
+.choiceSubtext {
+  font-size: 0.85rem;
+  color: var(--founded-text-muted);
+}
+
+.error {
+  color: #ff6b6b;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.navButtons {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+}
+
+.backButton {
+  padding: 16px 24px;
+  font-size: 1rem;
+  font-family: inherit;
+  background: transparent;
+  color: var(--founded-text-muted);
+  border: 2px solid var(--founded-gray-light);
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.backButton:hover {
+  border-color: var(--founded-text-muted);
+  color: var(--founded-white);
+}
+
+.submitButton {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 16px 32px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  font-family: inherit;
+  background: var(--founded-lime);
+  color: var(--founded-black);
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 20px rgba(200, 255, 0, 0.3);
+}
+
+.submitButton:hover:not(:disabled) {
+  box-shadow: 0 0 40px rgba(200, 255, 0, 0.5);
+}
+
+.submitButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.rocketIcon {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.submitButton:hover:not(:disabled) .rocketIcon {
+  transform: translateX(4px) translateY(-4px);
+}
+
+.loadingText {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
