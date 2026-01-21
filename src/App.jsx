@@ -56,49 +56,45 @@ function App() {
     setIsSubmitting(true)
     setSubmitError(null)
 
-    const payload = {
-      ...feedback,
-      ...urlParams,
-      submittedAt: new Date().toISOString()
-    }
+    const hubspotPortalId = '145137932'
+    const hubspotFormId = '68e44d48-3e06-4f3c-8927-b9406ce5dcc5'
 
     try {
-      // Option 1: If you have a backend endpoint
-      // const response = await fetch('/api/feedback', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(payload)
-      // })
-      
-      // Option 2: Using HubSpot Forms API (requires form ID)
-      // You'll need to set up a HubSpot form and use their forms API
-      // const hubspotFormId = 'YOUR_FORM_ID'
-      // const hubspotPortalId = 'YOUR_PORTAL_ID'
-      // const response = await fetch(
-      //   `https://api.hsforms.com/submissions/v3/integration/submit/${hubspotPortalId}/${hubspotFormId}`,
-      //   {
-      //     method: 'POST',
-      //     headers: { 'Content-Type': 'application/json' },
-      //     body: JSON.stringify({
-      //       fields: [
-      //         { name: 'email', value: urlParams.email },
-      //         { name: 'workshop_energy_level', value: feedback.energyLevel },
-      //         { name: 'workshop_highlights', value: feedback.highlights.join(', ') },
-      //         { name: 'workshop_magic_word', value: feedback.magicWord },
-      //         { name: 'workshop_recommend', value: feedback.wouldRecommend ? 'Yes' : 'No' },
-      //         { name: 'workshop_name', value: urlParams.workshopName },
-      //         { name: 'workshop_date', value: urlParams.workshopDate }
-      //       ]
-      //     })
-      //   }
-      // )
+      const response = await fetch(
+        `https://api.hsforms.com/submissions/v3/integration/submit/${hubspotPortalId}/${hubspotFormId}`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            fields: [
+              { name: 'email', value: feedback.email },
+              { name: 'energy_level', value: String(feedback.energyLevel) },
+              { name: 'highlights', value: feedback.highlights.join(', ') },
+              { name: 'magic_word', value: feedback.magicWord },
+              { name: 'would_recommend', value: feedback.wouldRecommend ? 'Yes' : 'No' },
+              { name: 'workshop_name', value: urlParams.workshopName },
+              { name: 'workshop_date', value: urlParams.workshopDate }
+            ],
+            context: {
+              pageUri: window.location.href,
+              pageName: `Workshop Feedback - ${urlParams.workshopName}`
+            }
+          })
+        }
+      )
 
-      // For demo: log to console and simulate success
-      console.log('📊 Feedback submitted:', payload)
-      
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1500))
-      
+      if (!response.ok) {
+        throw new Error('Failed to submit to HubSpot')
+      }
+
+      console.log('📊 Feedback submitted to HubSpot:', {
+        email: feedback.email,
+        energyLevel: feedback.energyLevel,
+        highlights: feedback.highlights,
+        magicWord: feedback.magicWord,
+        wouldRecommend: feedback.wouldRecommend
+      })
+
       // Trigger confetti!
       confetti({
         particleCount: 100,
@@ -106,7 +102,7 @@ function App() {
         origin: { y: 0.6 },
         colors: ['#c8ff00', '#ffffff', '#a8d900']
       })
-      
+
       nextStep()
     } catch (error) {
       console.error('Failed to submit feedback:', error)
