@@ -8,6 +8,7 @@ import QuickPicks from './components/QuickPicks'
 import MagicWord from './components/MagicWord'
 import RocketLaunch from './components/RocketLaunch'
 import ThankYou from './components/ThankYou'
+import LiveReactions from './components/LiveReactions'
 
 // Get URL parameters for HubSpot integration
 const getUrlParams = () => {
@@ -187,6 +188,7 @@ function App() {
 
   return (
     <div className="app">
+      {step > 0 && step < 6 && <LiveReactions />}
       <AnimatePresence mode="wait">
         <motion.div
           key={step}
