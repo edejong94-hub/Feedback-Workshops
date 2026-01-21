@@ -68,10 +68,10 @@ function App() {
           body: JSON.stringify({
             fields: [
               { name: 'email', value: feedback.email },
-              { name: 'energy_level', value: String(feedback.energyLevel) },
-              { name: 'highlights', value: feedback.highlights.join(', ') },
-              { name: 'magic_word', value: feedback.magicWord },
-              { name: 'would_recommend', value: feedback.wouldRecommend ? 'Yes' : 'No' },
+              { name: 'workshop_energy_level', value: String(feedback.energyLevel) },
+              { name: 'workshop_highlights', value: feedback.highlights.join(';') },
+              { name: 'workshop_magic_word', value: feedback.magicWord },
+              { name: 'workshop_recommend', value: feedback.wouldRecommend ? 'Absolutely' : 'Not quite' },
               { name: 'workshop_name', value: urlParams.workshopName },
               { name: 'workshop_date', value: urlParams.workshopDate }
             ],

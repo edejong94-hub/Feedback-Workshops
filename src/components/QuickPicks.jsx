@@ -16,11 +16,11 @@ const options = [
 ]
 
 const QuickPicks = ({ selected, onChange, onNext, onBack, currentStep, totalSteps }) => {
-  const toggleOption = (id) => {
-    if (selected.includes(id)) {
-      onChange(selected.filter(item => item !== id))
+  const toggleOption = (label) => {
+    if (selected.includes(label)) {
+      onChange(selected.filter(item => item !== label))
     } else {
-      onChange([...selected, id])
+      onChange([...selected, label])
     }
   }
 
@@ -41,8 +41,8 @@ const QuickPicks = ({ selected, onChange, onNext, onBack, currentStep, totalStep
         {options.map((option, index) => (
           <motion.button
             key={option.id}
-            className={`${styles.option} ${selected.includes(option.id) ? styles.selected : ''}`}
-            onClick={() => toggleOption(option.id)}
+            className={`${styles.option} ${selected.includes(option.label) ? styles.selected : ''}`}
+            onClick={() => toggleOption(option.label)}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.05 }}
@@ -51,8 +51,8 @@ const QuickPicks = ({ selected, onChange, onNext, onBack, currentStep, totalStep
           >
             <span className={styles.optionEmoji}>{option.emoji}</span>
             <span className={styles.optionLabel}>{option.label}</span>
-            {selected.includes(option.id) && (
-              <motion.span 
+            {selected.includes(option.label) && (
+              <motion.span
                 className={styles.checkmark}
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
