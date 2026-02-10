@@ -68,3 +68,57 @@
   font-size: 0.85rem;
   color: #ff6b6b;
 }
+
+.privacyLabel {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 32px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.checkbox {
+  display: none;
+}
+
+.checkboxCustom {
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+  border: 2px solid var(--founded-gray-light);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  background: transparent;
+}
+
+.checkbox:checked + .checkboxCustom {
+  border-color: var(--founded-lime);
+  background: var(--founded-lime);
+}
+
+.checkmark {
+  color: var(--founded-black, #1a1a2e);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.privacyText {
+  font-size: 0.9rem;
+  color: var(--founded-text-muted);
+  line-height: 1.4;
+}
+
+.privacyLink {
+  color: var(--founded-lime);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: opacity 0.2s ease;
+}
+
+.privacyLink:hover {
+  opacity: 0.8;
+}

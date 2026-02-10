@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import styles from './EmailInput.module.css'
 import ProgressBar from './ProgressBar'
 import NavButtons from './NavButtons'
 
 const EmailInput = ({ value, onChange, onNext, onBack, currentStep, totalSteps }) => {
+  const [privacyAccepted, setPrivacyAccepted] = useState(false)
+
   const isValidEmail = (email) => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
   }
@@ -64,12 +66,40 @@ const EmailInput = ({ value, onChange, onNext, onBack, currentStep, totalSteps }
         )}
       </div>
 
+      <motion.label
+        className={styles.privacyLabel}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.3 }}
+      >
+        <input
+          type="checkbox"
+          checked={privacyAccepted}
+          onChange={(e) => setPrivacyAccepted(e.target.checked)}
+          className={styles.checkbox}
+        />
+        <span className={styles.checkboxCustom}>
+          {privacyAccepted && <span className={styles.checkmark}>✓</span>}
+        </span>
+        <span className={styles.privacyText}>
+          I agree to the{' '}
+          <a
+            href="https://www.founded.in/en/privacy-voorwaarden"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.privacyLink}
+          >
+            privacy terms
+          </a>
+        </span>
+      </motion.label>
+
       <NavButtons
         onBack={onBack}
         onNext={onNext}
         showBack={true}
         nextLabel="Continue"
-        nextDisabled={!isValidEmail(value)}
+        nextDisabled={!isValidEmail(value) || !privacyAccepted}
       />
     </div>
   )
