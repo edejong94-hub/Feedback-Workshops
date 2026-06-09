@@ -9,6 +9,9 @@ import MagicWord from './components/MagicWord'
 import RocketLaunch from './components/RocketLaunch'
 import ThankYou from './components/ThankYou'
 import LiveReactions from './components/LiveReactions'
+import QRGenerator from './components/QRGenerator'
+
+const isQRPage = () => window.location.pathname === '/qr'
 
 // Get URL parameters for HubSpot integration
 const getUrlParams = () => {
@@ -21,7 +24,7 @@ const getUrlParams = () => {
   }
 }
 
-function App() {
+function FeedbackForm() {
   const [step, setStep] = useState(0)
   const [urlParams] = useState(getUrlParams)
   const [feedback, setFeedback] = useState({
@@ -202,6 +205,11 @@ function App() {
       </AnimatePresence>
     </div>
   )
+}
+
+function App() {
+  if (isQRPage()) return <QRGenerator />
+  return <FeedbackForm />
 }
 
 export default App
