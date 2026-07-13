@@ -10,6 +10,7 @@ import RocketLaunch from './components/RocketLaunch'
 import ThankYou from './components/ThankYou'
 import LiveReactions from './components/LiveReactions'
 import QRGenerator from './components/QRGenerator'
+import PinGate from './components/PinGate'
 
 const isQRPage = () => window.location.pathname === '/qr'
 
@@ -208,7 +209,7 @@ function FeedbackForm() {
 }
 
 function App() {
-  if (isQRPage()) return <QRGenerator />
+  if (isQRPage()) return <PinGate><QRGenerator /></PinGate>
   return <FeedbackForm />
 }
 

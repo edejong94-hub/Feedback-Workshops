@@ -160,6 +160,16 @@ Create a HubSpot workflow or email template that includes a personalized link:
 https://your-feedback-site.netlify.app/?email={{contact.email}}&contactId={{contact.hs_object_id}}&workshop=Workshop%20Name&date=2025-01-20
 ```
 
+## Admin / QR Generator
+
+Visit `/qr` to generate branded, per-workshop feedback QR codes (Startup 101, Startup Framework, Pitching 102, Startup Funding, Small BIG, or a custom name). Each QR encodes a link like `/?workshop=Startup%20101`, which the feedback form reads automatically and forwards to HubSpot as `workshop_name` — so scanning the right QR at the end of a session sets the workshop type for you.
+
+The `/qr` page is protected by a simple PIN so it isn't wide open to anyone with the URL. This is a static site with no backend, so treat it as a light deterrent (the PIN ends up in the shipped JS bundle), not real security.
+
+- Set `VITE_QR_ADMIN_PIN` in a local `.env` file for development (see `.env.example`).
+- Set the same variable in your Netlify site's **Environment variables** for production.
+- If unset, it falls back to a default PIN defined in `src/components/PinGate.jsx`.
+
 ## Customization
 
 ### Change highlight options
